@@ -41,9 +41,13 @@ module.exports = {
     }
   },
 
-
-
-  add(scheme){},
+// POST /api/schemes
+  async add(scheme){
+    //insert
+    const [id] = await db('schemes').insert(scheme);
+    //return new obj (from db)
+    return db('schemes').where('schemes.id', id).first();
+  },
   update(changes,id){},
   remove(id){}
   
