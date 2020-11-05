@@ -48,7 +48,16 @@ module.exports = {
     //return new obj (from db)
     return db('schemes').where('schemes.id', id).first();
   },
-  update(changes,id){},
+  
+  // PUT /api/schemes:id
+  async update(changes,id){
+    await db('schemes').where('schemes.id', id).update(changes);
+
+    return db('schemes').where('schemes.id', id).first();
+
+  },
+
+  // DELETE /api/schemes/:id
   remove(id){}
   
 };
