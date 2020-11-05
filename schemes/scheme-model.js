@@ -66,4 +66,21 @@ module.exports = {
       return Promise.resolve(foundScheme);
     }
   },
+
+
+  // POST /api/schemes/:id/addStep
+  async addStep(step, scheme_id){
+    //make sure scheme exists
+    const foundScheme = await db('schemes').where('schemes.id', scheme_id);
+
+    //return null if no matching scheme found
+    if(!foundScheme){return Promise.resolve(null)}else{
+      
+      //insert step
+      const [id] = await db('steps').insert(step);
+
+      //return step
+      return db('steps').where('steps.id',id).first();
+    }
+  },
 } 

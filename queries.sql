@@ -39,3 +39,26 @@ FROM 'Order' as o
 JOIN Employee as e
     ON o.EmployeeId = e.Id;
 
+-- STRETCH
+
+-- Displays CategoryName and a new column called Count that shows how many products are in each category. Shows 9 records.
+
+-- wrong number of categories in prompt? 8 categories total
+
+SELECT 
+    c.CategoryName,
+    COUNT(*) as 'Count'
+FROM Product as p
+JOIN Category as c
+    ON p.CategoryId = c.Id
+GROUP BY p.CategoryId;
+
+-- Display OrderID and a column called ItemCount that shows the total number of products placed on the order. Shows 196 records.
+
+-- wrong number of records in prompt? 16818 total orders
+
+SELECT
+    OrderId,
+    COUNT(*) as 'Item Count'
+FROM OrderDetail as od
+GROUP BY OrderId;
