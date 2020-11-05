@@ -58,6 +58,12 @@ module.exports = {
   },
 
   // DELETE /api/schemes/:id
-  remove(id){}
-  
-};
+  async remove(id){
+    const foundScheme = await db('schemes').where('id', id);
+    if(!foundScheme){return Promise.resolve(null)}
+    else{
+      await db('schemes').where('schemes.id', id).del();
+      return Promise.resolve(foundScheme);
+    }
+  },
+}
